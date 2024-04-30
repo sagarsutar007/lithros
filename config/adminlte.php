@@ -326,7 +326,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Add Product',
-                    'url' => 'admin/products/create',
+                    'url' => 'app/products/create',
+                ],
+                [
+                    'text' => 'Products',
+                    'url' => 'app/products',
                 ],
             ],
         ],

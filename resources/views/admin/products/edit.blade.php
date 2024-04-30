@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <form method="post" action="{{ route('products.update', ['product' => $product]) }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="card mt-5">
+                    <div class="card mt-2">
                         <div class="card-header">
                             <h3 class="card-title">
                                 Edit Product
@@ -87,6 +87,12 @@
                                             <label class="form-check-label" for="not-published">Not Published</label>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="description">Product Descrpition:</label>
+                                            <textarea name="description" class="form-control" id="description" placeholder="Enter Product Description" >{{ $product->description}}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
                                 <hr>
                                 <div class="row">
@@ -130,7 +136,7 @@
                 </form>
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-header">
                         <h3 class="card-title">Uploaded Images</h3>
                     </div>
@@ -138,8 +144,8 @@
                         <div class="row">
                             @foreach ($images as $image)
                             <div class="col-md-6">
-                                <img src="{{ asset('assets/images/products/'.$image->filename) }}" class="img-thumb w-100" alt="">
-                                <button class="btn btn-outline-danger">
+                                <img src="{{ asset('assets/images/products/'.$image->filename) }}" class="img-thumbnail w-100" alt="">
+                                <button class="btn btn-outline-danger w-100 mt-3 btn-delete-image" data-imageid="{{$image->product_image_id}}">
                                     <i class="fas fa-trash"></i> Delete
                                 </button>
                             </div>
@@ -185,6 +191,27 @@
 
             $(document).on('click', '.remove-specification-item', function(){
                 $(this).closest('.specification-item').remove();
+            });
+
+            $(document).on('click', '.btn-delete-image', function(){
+                $(this).closest('.col-md-6').remove();
+
+                var imageId = $(this).data('imageid');
+                var csrfToken = "{{ csrf_token() }}";
+
+                $.ajax({
+                    url: '/app/products/images/' + imageId,
+                    type: 'DELETE',
+                    data: {
+                        _token: csrfToken
+                    },
+                    success: function(response) {
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        // Optionally, display an error message or perform any other action
+                    }
+                });
             });
 
             // Show Error Messages

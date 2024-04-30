@@ -7,7 +7,7 @@
     <div class="col-md-7 mx-auto">
         <form action="{{ route('products.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">
             @csrf
-            <div class="card mt-5">
+            <div class="card mt-2">
                 <div class="card-header">
                     <h3 class="card-title">
                         Add Product
@@ -90,6 +90,13 @@
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="status" id="not-published" value="0">
                                     <label class="form-check-label" for="not-published">Not Published</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="description">Product Descrpition:</label>
+                                    <textarea name="description" class="form-control" id="description" placeholder="Enter Product Description" ></textarea>
                                 </div>
                             </div>
                         </div>

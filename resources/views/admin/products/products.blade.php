@@ -31,10 +31,10 @@
                             @foreach($products as $product)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $product->name }}</td>
+                                <td>{{ ucfirst($product->name) }}</td>
                                 <td>{{ $product->mrp }}</td>
                                 <td>{{ $product->category->name }}</td>
-                                <td>{{ $product->stock }}</td>
+                                <td>{{ $product->stock ? 'Available' : 'Not Available' }}</td>
                                 <td>{{ $product->status ? 'Published' : 'Not Published' }}</td>
                                 <td>
                                     <a href="{{ route('products.edit', ['product' => $product]) }}" class="btn btn-sm btn-primary">

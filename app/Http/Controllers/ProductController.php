@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -47,6 +48,7 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,category_id',
             'stock' => 'required|in:1,0',
             'status' => 'required|in:1,0',
+            'description' => 'nullable',
             'specs.*' => 'required|string',
             'values.*' => 'required|string',
         ]);
@@ -57,6 +59,8 @@ class ProductController extends Controller
         $product->category_id = $validatedData['category_id'];
         $product->stock = $validatedData['stock'];
         $product->status = $validatedData['status'];
+        $product->description = $validatedData['description'];
+        $product->slug = Str::slug($validatedData['name']);
         $product->save();
 
         $specifications = [];
@@ -71,7 +75,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $filename =  uniqid() . '-' . time() . '.' . $image->getClientOriginalExtension();
                 $imagePath = public_path('assets/images/products/');
                 $image->move($imagePath, $filename);
                 ProductImage::create([
@@ -101,60 +105,54 @@ class ProductController extends Controller
         return view('admin.products.edit', compact('product', 'categories', 'specifications', 'images'));
     }
 
-    // Method to update the specified product in the database
+
     public function update(Request $request, Product $product)
     {
-        // Validation
+   
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'price' => 'nullable|numeric',
-            'images.*' => 'nullable|image|max:20480',
-            'category_id' => 'required|exists:categories,id',
-            'type' => 'required|in:1,0',
+            'mrp' => 'nullable|numeric',
+            'category_id' => 'required|exists:categories,category_id',
+            'stock' => 'required|in:1,0',
             'status' => 'required|in:1,0',
-            'product-specification.*' => 'required|string',
-            'specification-values.*' => 'required|string',
+            'description' => 'nullable',
+            'specs.*' => 'required|string',
+            'values.*' => 'required|string',
         ]);
 
-        // Update the product with the new data
         $product->update([
             'name' => $validatedData['name'],
-            'price' => $validatedData['price'],
+            'mrp' => $validatedData['mrp'],
             'category_id' => $validatedData['category_id'],
-            'stock' => $validatedData['type'] == '1' ? 'available' : 'not available',
-            'status' => $validatedData['status'] == '1' ? 'published' : 'not published',
+            'stock' => $validatedData['stock'],
+            'status' => $validatedData['status'],
+            'description' => $validatedData['description']
+            
         ]);
 
-        // Delete existing specifications and values
         $product->specifications()->delete();
 
-        // Store product specifications and values
-        $product->specifications()->createMany(array_map(function ($spec, $value) {
-            return ['name' => $spec, 'value' => $value];
-        }, $validatedData['product-specification'], $validatedData['specification-values']));
-
-        // Handle file uploads if any
-        // if ($request->hasFile('images')) {
-        //     foreach ($request->file('images') as $photo) {
-        //         $path = $photo->store('images');
-        //         $product->images()->create(['path' => $path]);
-        //     }
-        // }
-
-        foreach ($request->products as $key => $productName) {
-            $product = new Product();
-            $product->name = $productName;
-
-        // Handle image upload
-        if ($request->hasFile('images') && $request->file('images')[$key]->isValid()) {
-            $image = $request->file('images')[$key];
-            $filename = time() . '_' . $image->getClientOriginalName(); // Using original name for filename
-            $image->storeAs('public/assets/uploads', $filename); // Store the image in the 'public/assets/uploads' directory
-
-            // Update the 'images' column in the database with the filename
-            $product->images = $filename;
+        $specifications = [];
+        foreach ($validatedData['specs'] as $index => $spec) {
+            $specifications[] = new Specification([
+                'key' => $spec,
+                'value' => $validatedData['values'][$index],
+            ]);
         }
-    }
+
+        $product->specifications()->saveMany($specifications);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $filename =  uniqid() . '-' . time() . '.' . $image->getClientOriginalExtension();
+                $imagePath = public_path('assets/images/products/');
+                $image->move($imagePath, $filename);
+                ProductImage::create([
+                    'filename' => $filename,
+                    'product_id' => $product->product_id
+                ]);
+            }
+        }
 
         return redirect()->route('products')->with('success', 'Product updated successfully');
     }
@@ -166,5 +164,22 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products')->with('success', 'Product deleted successfully');
+    }
+
+    public function deleteImage(ProductImage $image)
+    {
+        // Delete the Image
+        $imagePath = public_path('assets/images/products/' . $image->filename);
+
+      
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+        
+        $image->delete();
+        
+        
+
+        return response()->json(['success'=>true, 'message'=>'Image deleted successfully'], 200);
     }
 }
