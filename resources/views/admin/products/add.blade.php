@@ -3,7 +3,6 @@
 @section('title', 'Add New products')
 
 @section('content')
-
 <div class="row">
     <div class="col-md-7 mx-auto">
         <form action="{{ route('products.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">
@@ -136,9 +135,6 @@
         </form>
     </div>
 </div>
-
-
-
 @stop
 
 
