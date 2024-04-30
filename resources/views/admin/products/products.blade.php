@@ -6,7 +6,7 @@
 
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <div class="card my-5 mx-3">
+        <div class="card my-3">
             <div class="card-header">
                 <h3 class="card-title">List of Products</h3>
                 <div class="card-tools">
@@ -43,16 +43,7 @@
                                 <td>{{ $product->stock }}</td>
                                 <td>{{ $product->status ? 'Published' : 'Not Published' }}</td>
                                 <td>
-                                    <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-sm btn-primary">
-                                        <i class="fas fa-edit"></i> <!-- Edit Icon -->
-                                    </a>
-                                    <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">
-                                            <i class="fas fa-trash"></i> <!-- Delete Icon -->
-                                        </button>
-                                    </form>
+
                                 </td>
                             </tr>
                             @endforeach
@@ -64,3 +55,20 @@
     </div>
 </div>
 @endsection
+@section('js')
+    <script>
+        $(function () {
+            // Show Error Messages
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    toastr.error('{{ $error }}');
+                @endforeach
+            @endif
+
+            // Show Success Message
+            @if(session('success'))
+                toastr.success('{{ session('success') }}');
+            @endif
+        });
+    </script>
+@stop

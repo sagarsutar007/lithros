@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-7 mx-auto">
-        <form action="{{ route('products.store') }}" method="post" autocomplete="off">
+        <form action="{{ route('products.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">
             @csrf
             <div class="card mt-5">
                 <div class="card-header">
@@ -151,7 +151,7 @@
                 minimumResultsForSearch: -1
             });
 
-            $("#add-specification-item").on('click', function () {
+            $(".add-specification-item").on('click', function () {
                 $(".specifications-container").append(`
                     <div class="specification-item">
                         <div class="row">
