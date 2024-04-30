@@ -10,11 +10,11 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h1 class="pagetitle__heading mb-0">Careers</h1>
+          <h1 class="pagetitle__heading mb-0">Openings</h1>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Careers</li>
+              <li class="breadcrumb-item active" aria-current="page">Openings</li>
             </ol>
           </nav>
           <a href="#about" class="scroll-down">
@@ -24,7 +24,7 @@
       </div><!-- /.row -->
     </div><!-- /.container -->
 </section>
-@include('web.partials.career-layout')
+@include('web.partials.openings-layout')
 
 
 

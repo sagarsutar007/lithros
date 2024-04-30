@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Career;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Opening;
 
 class WebController extends Controller
 {
@@ -60,10 +61,10 @@ class WebController extends Controller
         return view('web.products', compact('categories', 'products'));
     }
 
-    public function careers()
+    public function openings()
     {
-        $careers = Career::all();
-        return view('web.careers', compact('careers'));
+        $openings = Opening::paginate(9);
+        return view('web.openings', compact('openings'));
     }
 
     public function contact()
@@ -72,8 +73,8 @@ class WebController extends Controller
     }
 
     public function showBySlug($slug)
-    {    
-        $product = Product::where('slug', $slug)->firstOrFail();
+    {   
+        $product = Product::with('specifications')->where('slug', $slug)->firstOrFail();
         return view('web.product-details', compact('product'));
     }
 

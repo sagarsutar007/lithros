@@ -7,7 +7,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\CareerController;
+use App\Http\Controllers\OpeningController;
 
 
 /*
@@ -31,7 +31,7 @@ Route::get('/services/recycling', [WebController::class, 'recycling'])->name('we
 Route::get('/request-quote', [WebController::class, 'requestQuote'])->name('web.requote');
 Route::get('/products', [WebController::class, 'products'])->name('web.products');
 Route::get('/product/{slug}', [WebController::class, 'showBySlug'])->name('products.show');
-Route::get('/careers', [WebController::class, 'careers'])->name('web.careers');
+Route::get('/careers', [WebController::class, 'openings'])->name('web.openings');
 Route::get('/contact-us', [WebController::class, 'contact'])->name('web.contact');
 Route::get('/admin', [WebController::class, 'admin'])->name('web.admin');
 
@@ -76,16 +76,16 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-    Route::prefix('/app/careers')->group(function () {
-        Route::get('/careers', [CareerController::class, 'index'])->name('careers');
-        Route::get('/create', [CareerController::class, 'create'])->name('careers.create');
-        Route::post('/store', [CareerController::class, 'store'])->name('careers.store');
-        Route::post('/save', [CareerController::class, 'save'])->name('careers.save');
-        Route::get('/edit/{career_id}', [CareerController::class, 'edit'])->name('careers.edit-job');
-        Route::post('/update', [CareerController::class, 'update'])->name('careers.update');
-        Route::delete('', [CareerController::class, 'destroy'])->name('careers.destroy');
-        Route::post('/search', [CareerController::class, 'search'])->name('careers.search');
-        Route::get('/list-job', [CareerController::class, 'listJob'])->name('careers.list-job');
+    Route::prefix('/app/openings')->group(function () {
+        Route::get('/', [OpeningController::class, 'index'])->name('openings');
+        Route::get('/create', [OpeningController::class, 'create'])->name('openings.create');
+        Route::post('/store', [OpeningController::class, 'store'])->name('openings.store');
+        Route::post('/save', [OpeningController::class, 'save'])->name('openings.save');
+        Route::get('/edit/{career_id}', [OpeningController::class, 'edit'])->name('openings.edit-job');
+        Route::post('/update', [OpeningController::class, 'update'])->name('openings.update');
+        Route::delete('', [OpeningController::class, 'destroy'])->name('openings.destroy');
+        Route::post('/search', [OpeningController::class, 'search'])->name('openings.search');
+        Route::get('/list-job', [OpeningController::class, 'listJob'])->name('openings.list-job');
     });
 
     Route::prefix('/app/applicants')->group(function () {

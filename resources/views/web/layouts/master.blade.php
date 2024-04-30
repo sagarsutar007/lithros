@@ -84,7 +84,7 @@
                 <a href="{{ route('web.products') }}" class="nav__item-link">Products</a>
               </li>
               <li class="nav__item has-dropdown">
-                <a href="{{ route('web.careers') }}" class="nav__item-link">Careers</a>
+                <a href="{{ route('web.openings') }}" class="nav__item-link">Openings</a>
               </li>
               <li class="nav__item">
                 <a href="{{ route('web.contact') }}" class="nav__item-link">Contact Us</a>
@@ -137,7 +137,7 @@
                     <li><a href=#>Legals</a></li>
                     <li><a href="#">CSR</a></li>
                     <li><a href="{{ route('web.gallery') }}">Gallery</a></li>
-                    <li><a href="{{ route('web.careers') }}">Careers</a></li>
+                    <li><a href="{{ route('web.openings') }}">Careers</a></li>
                     <li><a href="{{ route('web.products') }}">Products</a></li>
                   </ul>
                 </nav>
