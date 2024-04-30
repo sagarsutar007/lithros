@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Career;
+use App\Models\Category;
+use App\Models\Product;
 
 class WebController extends Controller
 {
@@ -50,8 +52,12 @@ class WebController extends Controller
     }
 
     public function products()
-    {
-        return view('web.products');
+    {   
+        $products = Product::with('images')->get();
+        $products = Product::paginate(9);
+        // dd($products);
+        $categories = Category::withCount('products')->get();
+        return view('web.products', compact('categories', 'products'));
     }
 
     public function careers()
@@ -65,9 +71,10 @@ class WebController extends Controller
         return view('web.contact');
     }
 
-    public function productDetails()
-    {
-        return view('web.product-details');
+    public function showBySlug($slug)
+    {    
+        $product = Product::where('slug', $slug)->firstOrFail();
+        return view('web.product-details', compact('product'));
     }
 
 

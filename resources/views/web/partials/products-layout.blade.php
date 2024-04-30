@@ -1,200 +1,101 @@
 <section id="shop" class="shop-grid">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <!-- Product item #1 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/two-wheeler-lr7235.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="product-details" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="product-details">LR7235</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-            <!-- Product item #2 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/two-wheeler-lr7230.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="#" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="shop-single-product.html">LR7230</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-            <!-- Product item #3 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/two-wheeler-lr6030.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="#" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="shop-single-product.html">LR6030</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-            <!-- Product item #4 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/two-wheeler-lr7245.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="#" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="shop-single-product.html">LR7245</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-            <!-- Product item #5 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/two-wheeler-lr2415.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="#" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="shop-single-product.html">LR2415</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-            <!-- Product item #6 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/three-wheeler-lr4890.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="#" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="shop-single-product.html">LR4890</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-            <!-- Product item #7 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/three-wheeler-lr4830.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="#" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="shop-single-product.html">LR4830</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-            <!-- Product item #8 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/three-wheeler-lr6060.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="#" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="shop-single-product.html">LR6060</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-            <!-- Product item #9 -->
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="product-item">
-                <div class="product__img">
-                  <img src="{{ asset('assets/images/products/three-wheeler-lr48302.png') }}" alt="Product" loading="lazy">
-                  <div class="product__action">
-                    <a href="#" class="btn btn__secondary">
-                      <i class="icon-arrow-right"></i> <span>View Details</span>
-                    </a>
-                  </div><!-- /.product-action -->
-                </div><!-- /.product-img -->
-                <div class="product__info">
-                  <h4 class="product__title"><a href="shop-single-product.html">LR4830</a></h4>
-                  <span class="product__price">₹XXXX</span>
-                </div><!-- /.product-content -->
-              </div><!-- /.product-item -->
-            </div><!-- /.col-lg-4 -->
-          </div><!-- /.row -->
-          <!-- <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-9">
+        <div class="sorting-options d-flex flex-wrap justify-content-between align-items-center mb-30">
+          <strong>Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }} products</strong>
+          <select style="display: none;">
+            <option selected="" value="0">Sort by latest</option>
+            <option value="2">Sort by highest Price </option>
+            <option value="3">Sort by lowest Price </option>
+          </select><div class="nice-select" tabindex="0"><span class="current">Sort by latest</span><ul class="list"><li data-value="0" class="option selected focus">Sort by latest</li><li data-value="1" class="option">Sort by Popular</li><li data-value="2" class="option">Sort by highest Price </li><li data-value="3" class="option">Sort by lowest Price </li></ul></div>
+        </div>
+        <div class="row">
+          <!-- Product item #1 -->
+          @foreach ($products as $product)
+
+            <div class="col-sm-6 col-md-6 col-lg-4">
+                <div class="product-item">
+                    <div class="product__img">
+                      @if ($product->images)
+                          <img src="{{ asset('assets/images/products/'.$product->images->first()->filename) }}" loading="lazy">
+                      @endif
+                        <div class="product__action">
+                            <a href="product/{{ $product->slug }}" class="btn btn__secondary">
+                                <i class="icon-search"></i> <span>Enquire Now</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product__info">
+                        <h4 class="product__title"><a href="productDetails">{{ $product->name }}</a></h4>
+                        <span class="product__price">₹{{ $product->mrp }}</span>
+                    </div>
+                </div>
+            </div>
+          @endforeach
+
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12 text-center">
               <nav class="pagination-area">
-                <ul class="pagination justify-content-center">
-                  <li><a class="current" href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                </ul>
+                  <ul class="pagination justify-content-center">
+                      {{ $products->links() }}
+                  </ul>
               </nav>
-            </div>
-          </div> -->
-        </div><!-- /.col-lg-9 -->
-        <!-- <div class="col-sm-12 col-md-4 col-lg-3">
-          <aside class="sidebar-layout2">
-            <div class="widget widget-categories widget-categories-layout2">
-              <h5 class="widget__title">Categories</h5>
-              <div class="widget-content">
+          </div>
+      </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-3">
+        <aside class="sidebar-layout2">
+          <div class="widget widget-categories widget-categories-layout2">
+            <h5 class="widget__title">Categories</h5>
+            <div class="widget-content">
+              <ul class="list-unstyled mb-0">
                 <ul class="list-unstyled mb-0">
-                  <li><a href="#"><span class="cat-count">4</span><span>Neurology</span></a></li>
-                  <li><a href="#"><span class="cat-count">0</span><span>Cardiology</span></a></li>
-                  <li><a href="#"><span class="cat-count">3</span><span>Pathology</span></a></li>
-                  <li><a href="#"><span class="cat-count">2</span><span>Laboratory</span></a></li>
-                  <li><a href="#"><span class="cat-count">4</span><span>Pediatric</span></a></li>
-                  <li><a href="#"><span class="cat-count">1</span><span>Cardiac Clinic</span></a></li>
-                </ul>
+                  @foreach ($categories as $category)
+                      <li><a href="#"><span class="cat-count">{{ $category->products_count }}</span><span>{{ $category->name }}</span></a></li>
+                  @endforeach
+              </ul>
+              </ul>
+            </div>
+          </div>
+          <div class="widget widget-poducts">
+            <h5 class="widget__title">Latest Products</h5>
+            <div class="widget__content">
+              <!-- product item #1 -->
+              <div class="widget-product-item d-flex align-items-center">
+                <div class="widget-product__img">
+                  <a href="#"><img src="assets/images/products/3.jpg" alt="Product" loading="lazy"></a>
+                </div><!-- /.product-product-img -->
+                <div class="widget-product__content">
+                  <h5 class="widget-product__title"><a href="#">Calming Herps</a></h5>
+                  <span class="widget-product__price">$ 38.00</span>
+                </div><!-- /.widget-product-content -->
+              </div><!-- /.widget-product-item -->
+              <!-- product item #2 -->
+              <div class="widget-product-item d-flex align-items-center">
+                <div class="widget-product__img">
+                  <a href="#"><img src="assets/images/products/9.jpg" alt="Product" loading="lazy"></a>
+                </div><!-- /.product-product-img -->
+                <div class="widget-product__content">
+                  <h5 class="widget-product__title"><a href="#">Goji Powder</a></h5>
+                  <span class="widget-product__price">$ 33.00</span>
+                </div><!-- /.widget-product-content -->
+              </div><!-- /.widget-product-item -->
+              <!-- product item #3 -->
+              <div class="widget-product-item d-flex align-items-center">
+                <div class="widget-product__img">
+                  <a href="#"><img src="assets/images/products/4.jpg" alt="Product" loading="lazy"></a>
+                </div>
+                <div class="widget-product__content">
+                  <h5 class="widget-product__title"><a href="#">Biotin Complex</a></h5>
+                  <span class="widget-product__price">$ 18.00</span>
+                </div>
               </div>
             </div>
-            <div class="widget widget-search">
-              <h5 class="widget__title">Search</h5>
-              <div class="widget__content">
-                <form class="widget__form-search">
-                  <input type="text" class="form-control" placeholder="Search">
-                  <button class="btn" type="submit"><i class="icon-search"></i></button>
-                </form>
-              </div>
-            </div>
-          </aside>
-        </div> -->
+          </div>
+        </aside>
       </div>
     </div>
-  </section>
+  </div>
+</section>

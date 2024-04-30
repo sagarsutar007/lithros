@@ -30,7 +30,7 @@ Route::get('/services/recharging', [WebController::class, 'recharging'])->name('
 Route::get('/services/recycling', [WebController::class, 'recycling'])->name('web.recycle');
 Route::get('/request-quote', [WebController::class, 'requestQuote'])->name('web.requote');
 Route::get('/products', [WebController::class, 'products'])->name('web.products');
-Route::get('/product-details', [WebController::class, 'productDetails'])->name('web.productDetails');
+Route::get('/product/{slug}', [WebController::class, 'showBySlug'])->name('products.show');
 Route::get('/careers', [WebController::class, 'careers'])->name('web.careers');
 Route::get('/contact-us', [WebController::class, 'contact'])->name('web.contact');
 Route::get('/admin', [WebController::class, 'admin'])->name('web.admin');

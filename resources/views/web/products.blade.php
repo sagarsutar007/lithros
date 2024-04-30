@@ -7,7 +7,7 @@
 @section('content')
 
 <section class="page-title page-title-layout1 bg-overlay bg-overlay-2 bg-parallax text-center">
-    <div class="bg-img"><img src="{{ asset('assets/images/page-titles/1.jpg') }}" alt="background"></div>
+    <div class="bg-img"><img src="{{ asset('assets/images/page-titles/product-bg.webp') }}" alt="background"></div>
     <div class="container">
       <div class="row">
         <div class="col-12">
