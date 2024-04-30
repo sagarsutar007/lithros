@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Specification;
 use App\Models\Category;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -71,10 +72,11 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $filename = time() . '.' . $image->getClientOriginalExtension();
-                $imagePath = public_path('assets/images/products/' . $filename);
-
-                $product->images()->create([
+                $imagePath = public_path('assets/images/products/');
+                $image->move($imagePath, $filename);
+                ProductImage::create([
                     'filename' => $filename,
+                    'product_id' => $product->product_id
                 ]);
             }
         }
@@ -92,10 +94,11 @@ class ProductController extends Controller
     // Method to show the form for editing the specified product
     public function edit(Product $product)
     {
-        // You may need to pass some data to the view, such as categories
-        // $categories = Category::all();
-        // return view('products.edit', ['product' => $product, 'categories' => $categories]);
-        return view('admin.products.edit-product', compact('product'));
+        $categories = Category::all();
+        $specifications = $product->specifications;
+        $images = $product->images;
+
+        return view('admin.products.edit', compact('product', 'categories', 'specifications', 'images'));
     }
 
     // Method to update the specified product in the database

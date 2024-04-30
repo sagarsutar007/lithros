@@ -15,18 +15,15 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead class="thead-light">
+                    <table class="table table-bordered table-striped" id="products">
+                        <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Product Name</th>
                                 <th>MRP</th>
-                                <th>Product Images</th>
                                 <th>Category</th>
-                                <th>Product Specification</th>
-                                <th>Product Specification Values</th>
                                 <th>Stock</th>
-                                <th>Status</th>
+                                <th>Published</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -35,15 +32,21 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->price }}</td>
-                                <td>{{-- Insert logic to display product images --}}</td>
+                                <td>{{ $product->mrp }}</td>
                                 <td>{{ $product->category->name }}</td>
-                                <td>{{-- Insert logic to display product specifications --}}</td>
-                                <td>{{-- Insert logic to display product specification values --}}</td>
                                 <td>{{ $product->stock }}</td>
                                 <td>{{ $product->status ? 'Published' : 'Not Published' }}</td>
                                 <td>
-
+                                    <a href="{{ route('products.edit', ['product' => $product]) }}" class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('products.destroy', ['product' => $product]) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">
+                                            <i class="fas fa-trash"></i> <!-- Delete Icon -->
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -58,6 +61,7 @@
 @section('js')
     <script>
         $(function () {
+            $("#products").DataTable();
             // Show Error Messages
             @if ($errors->any())
                 @foreach ($errors->all() as $error)

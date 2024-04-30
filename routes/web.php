@@ -66,13 +66,11 @@ Route::middleware(['auth'])->group(function () {
     // Products Routes
     Route::prefix('/app/products')->group(function () {
         Route::get('', [ProductController::class, 'index'])->name('products');
-        Route::get('/create', [ProductController::class, 'create'])->name('products.add-product');
+        Route::get('/create', [ProductController::class, 'create'])->name('products.create');
         Route::post('/store', [ProductController::class, 'store'])->name('products.store');
-        Route::post('/save', [ProductController::class, 'save'])->name('products.save');
-        Route::get('/{products}/edit', [ProductController::class, 'edit'])->name('products.edit');
-        Route::post('/{products}/update', [ProductController::class, 'update'])->name('products.update');
-        Route::delete('/{products}', [ProductController::class, 'destroy'])->name('products.destroy');
-        Route::post('/search', [ProductController::class, 'search'])->name('products.search');
+        Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+        Route::post('/{product}/update', [ProductController::class, 'update'])->name('products.update');
+        Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
     });
 
 
