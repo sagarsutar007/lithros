@@ -24,6 +24,7 @@ class ProductController extends Controller
         $specifications = array(
             "Battery Pack Energy",
             "Nominal Voltage",
+            "Rated Capacity",
             "Cycle Life",
             "Charging Method",
             "Charging Voltage",
