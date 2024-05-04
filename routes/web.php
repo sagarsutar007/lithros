@@ -89,15 +89,14 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('/app/applicants')->group(function () {
-        Route::get('/applicants', [ApplicantController::class, 'index'])->name('applicants.applicant-list');
+        Route::get('/', [ApplicantController::class, 'index'])->name('applicants');
         Route::get('/create', [ApplicantController::class, 'create'])->name('applicants.create');
         Route::post('/store', [ApplicantController::class, 'store'])->name('applicants.store');
         Route::post('/save', [ApplicantController::class, 'save'])->name('applicants.save');
-        Route::get('/edit/{appliant_id}', [ApplicantController::class, 'edit'])->name('applicants.edit-job');
-        Route::post('/update', [ApplicantController::class, 'update'])->name('applicants.update');
-        Route::delete('', [ApplicantController::class, 'destroy'])->name('applicants.destroy');
+        Route::get('/{applicant}/edit', [ApplicantController::class, 'edit'])->name('applicants.edit');
+        Route::post('/{applicant}/update', [ApplicantController::class, 'update'])->name('applicants.update');
+        Route::delete('{applicant}', [ApplicantController::class, 'destroy'])->name('applicants.destroy');
         Route::post('/search', [ApplicantController::class, 'search'])->name('applicants.search');
-        Route::get('/applicant-list', [ApplicantController::class, 'applicantList'])->name('applicants.applicant-list');
     });
 
     Route::prefix('/app/feedbacks')->group(function () {

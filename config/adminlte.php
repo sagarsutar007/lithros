@@ -349,7 +349,7 @@ return [
 
         [
             'text' => 'Applicants',
-            'url'  => 'app/applicant/applicant-list',
+            'url'  => 'app/applicants',
             'icon' => 'fas fa-user',
         ],
 

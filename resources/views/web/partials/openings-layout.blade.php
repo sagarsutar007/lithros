@@ -15,7 +15,7 @@
            <div class="job-item">
               <div class="job__meta d-flex align-items-center">
                  <span class="job__type">{{ $opening->type }}</span>
-                 <span class="job__location">{{ $opening->jlocation }}</span>
+                 <span class="job__location">{{ $opening->location }}</span>
               </div>
               <h4 class="job__title">{{ $opening->title }}</h4>
               <p class="job__desc">{{ $opening->about }}</p>
@@ -31,169 +31,160 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-12">
+   <div class="col-lg-12">
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-lg">
-           <div class="modal-content">
+         <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
                <div class="modal-header">
-                   <h5 class="modal-title">Apply For Job</h5>
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                       <span aria-hidden="true">×</span>
-                   </button>
+                  <h5 class="modal-title">Apply For Job</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                  </button>
                </div>
                <div class="modal-body">
-                   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                      <form class="contact-panel__form" action="{{ route('applicants.store') }}" method="POST" autocomplete="off">
-                          @csrf
-                          <div class="row">
-                              <div class="col-sm-6">
-                                 <div class="form-group">
+                  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <form id="applicationForm" class="contact-panel__form" action="{{ route('applicants.store') }}" method="post" autocomplete="off" enctype="multipart/form-data" novalidate>
+                        @csrf
+                        <div class="row">
+                            <!-- Full Name -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label for="full_name">Full Name:</label>
-                                    <input type="text" class="form-control" id="full_name" name="full_name" required placeholder="Enter your full name">
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="form-group">
+                                    <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name" name="full_name" required placeholder="Enter your full name" value="{{ old('full_name') }}">
+                                    @error('full_name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Email Address -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label for="email">Email Address:</label>
-                                    <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email address">
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="form-group">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required placeholder="Enter your email address" value="{{ old('email') }}">
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Phone Number -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label for="phone">Phone Number:</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="address">Address:</label>
-                                    <input type="text" class="form-control" id="address" name="address" required placeholder="Enter your address">
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="position">Position Applied For:</label>
-                                    <input type="text" class="form-control" id="position" name="position" required placeholder="Enter the position you're applying for">
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="start_date">Start Date:</label>
-                                    <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Enter joining date">
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="salary_expectations">Salary Expectations:</label>
-                                    <input type="text" class="form-control" id="salary_expectations" name="salary_expectations" placeholder="Enter your salary expectations">
-                                 </div>
-                              </div>
-                              <!-- Education Background -->
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="education">Highest Level of Education:</label>
-                                    <input type="text" class="form-control" id="education" name="education" required placeholder="Enter your highest level of education">
-                                 </div>
-                              </div>
-                              <!-- Work Experience -->
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="work_experience">Work Experience:</label>
-                                    <textarea class="form-control" id="work_experience" name="work_experience" rows="4" placeholder="Enter your work experience"></textarea>
-                                 </div>
-                              </div>
-                              <!-- Skills and Qualifications -->
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="skills">Relevant Skills:</label>
-                                    <textarea class="form-control" id="skills" name="skills" rows="4" placeholder="Enter your relevant skills"></textarea>
-                                 </div>
-                              </div>
-                              <!-- References -->
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="references">References:</label>
-                                    <textarea class="form-control" id="references" name="references" rows="4" placeholder="Enter your references"></textarea>
-                                 </div>
-                              </div>
-                              <!-- Cover Letter (Optional) -->
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="cover_letter">Cover Letter:</label>
-                                    <textarea class="form-control" id="cover_letter" name="cover_letter" rows="4" ></textarea>
-                                 </div>
-                              </div>
-                              <!-- Resume/CV (Optional) -->
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="resume">Resume/CV:</label>
-                                    <div class="input-group">
-                                       <div class="custom-file">
-                                          <input type="file" class="custom-file-input" id="resume">
-                                          <label class="custom-file-label" for="resume">Choose file</label>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <!-- Additional Information -->
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label for="additional_info">Additional Information:</label>
-                                    <textarea class="form-control" id="additional_info" name="additional_info" rows="4" placeholder="Any additional information"></textarea>
-                                 </div>
-                              </div>
-                              <!-- Consent and Agreement -->
-                              <div class="col-sm-6 mb-4">
-                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="consent" name="consent" required>
-                                    <label class="form-check-label" for="consent">
-                                    I Agree to the above terms and conditions.
-                                    </label>
-                                 </div>
-                              </div>
-                          </div>
-                       </form>
+                                    <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="Enter your phone number" value="{{ old('phone') }}">
+                                    @error('phone')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Gender -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="gender">Gender:</label>
+                                    <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender" required>
+                                        <option value="">Select</option>
+                                        <option value="male" {{ old('gender') === 'male' ? 'selected' : '' }}>Male</option>
+                                        <option value="female" {{ old('gender') === 'female' ? 'selected' : '' }}>Female</option>
+                                        <option value="other" {{ old('gender') === 'other' ? 'selected' : '' }}>Other</option>
+                                    </select>
+                                    @error('gender')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Profile Image -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="profile_img">Profile Image:</label>
+                                    <input type="file" class="form-control @error('profile_img') is-invalid @enderror" id="profile_img" name="profile_img">
+                                    @error('profile_img')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- CV -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cv">CV:</label>
+                                    <input type="file" class="form-control @error('cv') is-invalid @enderror" id="cv" name="cv" required>
+                                    @error('cv')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Permanent Address -->
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="permanent_address">Permanent Address:</label>
+                                    <textarea class="form-control @error('permanent_address') is-invalid @enderror" id="permanent_address" name="permanent_address" required placeholder="Enter your permanent address">{{ old('permanent_address') }}</textarea>
+                                    @error('permanent_address')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <!-- Present Address -->
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="present_address">Present Address:</label>
+                                    <textarea class="form-control @error('present_address') is-invalid @enderror" id="present_address" name="present_address" required placeholder="Enter your present address">{{ old('present_address') }}</textarea>
+                                    @error('present_address')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
 
-
-                   </div>
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="text-right">
+                            <button type="submit" id="submitForm" class="btn btn__primary"><i class="icon-arrow-right"></i>Apply Now</button>
+                        </div>
+                    </form>
+                    
+                    
+                  </div>
                </div>
-               <div class="modal-footer justify-content-end">
-                   <button type="submit" id="submitForm" class="btn btn__primary"><i class="icon-arrow-right"></i>Apply Now</button>
-               </div>
-           </div>
-       </div>
-     </div>
-    </div>
-  </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 </section>
 
 
 <!-- Add this JavaScript code at the bottom of your Blade file -->
 @section('scripts')
 <script>
-  $(document).ready(function () {
-      $('.btn__custom').click(function () {
-          $('#exampleModal').modal('show');
-      });
-  });
-
-  $(document).ready(function() {
-      $('#submitForm').click(function() {
-          $.ajax({
-              url: '{{ route("applicants.store") }}',
-              type: 'POST',
-              data: $('#applicationForm').serialize(),
-              success: function(response) {
-                  // Show success message
-                  $('#exampleModal').modal('hide');
-                  alert('Thanks! Your application has been submitted.');
-              },
-              error: function(xhr) {
-                  // Handle errors
-                  console.log(xhr.responseText);
-              }
-          });
-      });
-  });
-</script>
+   $(document).ready(function () {
+       $('.btn__custom').click(function () {
+           $('#exampleModal').modal('show');
+       });
+ 
+      //  $('#submitForm').click(function() {
+      //      var form = $('#applicationForm');
+      //      $.ajax({
+      //          type: form.attr('method'),
+      //          url: form.attr('action'),
+      //          data: form.serialize(),
+      //          success: function(response) {
+      //              // Handle success response
+      //              if (response.success) {
+      //                  // Show success message
+      //                  alert('Application submitted successfully!');
+      //                  // Close modal
+      //                  $('#exampleModal').modal('hide');
+      //                  // Optionally, you can reset the form fields
+      //                  form[0].reset();
+      //              } else {
+      //                  // Show error message
+      //                  alert('Failed to submit application. Please try again.');
+      //              }
+      //          },
+      //          error: function() {
+      //              // Handle error
+      //              alert('An error occurred while submitting the form. Please try again later.');
+      //          }
+      //      });
+      //  });
+   });
+ </script>
+ 
 @endsection

@@ -3,11 +3,6 @@
 @section('title', 'Create Feedback')
 
 @section('content')
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-6 d-flex justify-content-end">
-            <a href="{{ route('feedbacks') }}" class="btn btn-dark my-3">Back</a>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-6 mx-auto">
             <form action="{{ route('feedbacks.store') }}" method="post" enctype="multipart/form-data">

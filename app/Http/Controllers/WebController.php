@@ -7,6 +7,7 @@ use App\Models\Career;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Opening;
+use App\Models\Applicant;
 
 class WebController extends Controller
 {
@@ -63,8 +64,9 @@ class WebController extends Controller
 
     public function openings()
     {
+        $applicants = Applicant::all();
         $openings = Opening::paginate(9);
-        return view('web.openings', compact('openings'));
+        return view('web.openings', compact('openings', 'applicants'));
     }
 
     public function contact()

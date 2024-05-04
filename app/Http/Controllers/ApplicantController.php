@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Applicant;
+use App\Models\Opening;
 use Illuminate\Http\Request;
 
 class ApplicantController extends Controller
@@ -10,59 +11,65 @@ class ApplicantController extends Controller
     public function index()
     {
         $applicants = Applicant::all();
-        return view('applicant-list', compact('applicants'));
+        return view('admin.applicants.applicants', compact('applicants'));
     }
 
     public function store(Request $request)
     {
-        // Validate the incoming request data
-        $request->validate([
-            'full_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:applicants,email',
-            'phone' => 'nullable|string|max:20',
-            'address' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'start_date' => 'nullable|date',
-            'salary_expectations' => 'nullable|string|max:255',
-            'education' => 'required|string|max:255',
-            'work_experience' => 'nullable|string',
-            'skills' => 'nullable|string',
-            'references' => 'nullable|string',
-            'cover_letter' => 'nullable|string',
-            'resume' => 'nullable|file|max:2048', // Assuming maximum file size is 2MB
-            'additional_info' => 'nullable|string',
-            'consent' => 'required|accepted',
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string',
+            'gender' => 'required|string',
+            'email' => 'required|email',
+            'permanent_address' => 'required|string',
+            'present_address' => 'required|string',
+            'profile_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'cv' => 'required|file|mimes:pdf|max:20480',
         ]);
 
-        // Handle file upload for resume
-        if ($request->hasFile('resume')) {
-            $resumePath = $request->file('resume')->store('resumes');
-        } else {
-            $resumePath = null;
+        $applicant = new Applicant();
+        $applicant->name = $validatedData['name'];
+        $applicant->phone = $validatedData['phone'];
+        $applicant->gender = $validatedData['gender'];
+        $applicant->email = $validatedData['email'];
+        $applicant->permanent_address = $validatedData['permanent_address'];
+        $applicant->present_address = $validatedData['present_address'];
+
+        // Handle profile image upload
+        if ($request->hasFile('profile_img')) {
+            $profileImage = $request->file('profile_img');
+            $profileImageName = uniqid() . '-' . time() . '.' . $profileImage->getClientOriginalExtension();
+            $profileImage->move(public_path('assets/images/profile/'), $profileImageName);
+            $applicant->profile_img = 'assets/images/profile/' . $profileImageName;
         }
 
-        // Create a new applicant record
-        $applicant = new Applicant([
-            'full_name' => $request->input('full_name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'address' => $request->input('address'),
-            'position' => $request->input('position'),
-            'start_date' => $request->input('start_date'),
-            'salary_expectations' => $request->input('salary_expectations'),
-            'education' => $request->input('education'),
-            'work_experience' => $request->input('work_experience'),
-            'skills' => $request->input('skills'),
-            'references' => $request->input('references'),
-            'cover_letter' => $request->input('cover_letter'),
-            'resume' => $resumePath,
-            'additional_info' => $request->input('additional_info'),
-            'consent' => $request->input('consent'),
-        ]);
+        // Handle CV upload
+        if ($request->hasFile('cv')) {
+            $resume = $request->file('cv');
+            $resumeName = uniqid() . '-' . time() . '.' . $resume->getClientOriginalExtension();
+            $resume->move(public_path('assets/resumes/'), $resumeName);
+            $applicant->cv = 'assets/resumes/' . $resumeName;
+        }
 
-        // Save the applicant record
         $applicant->save();
 
-        return redirect()->back()->with('success', 'Applicant created successfully.');
+        return redirect()->back()->with('success', 'Applicant created successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $applicant = Applicant::findOrFail($id);
+        
+        if (file_exists(public_path($applicant->profile_img))) {
+            unlink(public_path($applicant->profile_img));
+        }
+        if (file_exists(public_path($applicant->cv))) {
+            unlink(public_path($applicant->cv));
+        }
+        
+        $applicant->delete();
+
+        return redirect()->back()->with('success', 'Applicant deleted successfully!');
     }
 }
+
