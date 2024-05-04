@@ -298,7 +298,7 @@ return [
 
         [
             'text' => 'Dashboard',
-            'url'  => 'admin/settings',
+            'url'  => 'app/dashboard',
             'icon' => 'nav-icon fas fa-home',
             'class' => '',
         ],
@@ -343,8 +343,18 @@ return [
 
         [
             'text' => 'Careers',
-            'url'  => 'app/careers/list-job',
-            'icon' => 'fas fa-comment-dots',
+            'url'  => '#',
+            'icon' => 'fas fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Add Openings',
+                    'url' => 'app/openings/create',
+                ],
+                [
+                    'text' => 'View Openings',
+                    'url' => 'app/openings',
+                ],
+            ],
         ],
 
         [

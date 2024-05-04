@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Opening;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -53,6 +54,8 @@ class OpeningController extends Controller
         $opening->working_days = $validatedData['working_days'];
         $opening->slug = Str::slug($opening->slug);
         $opening->working_hours = $validatedData['working_hours'];
+        $opening->created_by = Auth::id();
+        $opening->updated_by = null;
         $opening->save();
 
 

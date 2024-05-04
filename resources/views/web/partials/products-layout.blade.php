@@ -59,7 +59,7 @@
               </ul>
             </div>
           </div>
-          <div class="widget widget-poducts">
+          {{-- <div class="widget widget-poducts">
             <h5 class="widget__title">Latest Products</h5>
             <div class="widget__content">
               <!-- product item #1 -->
@@ -93,7 +93,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
         </aside>
       </div>
     </div>
