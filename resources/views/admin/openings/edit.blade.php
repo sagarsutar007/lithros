@@ -28,9 +28,8 @@
                 </ul>
             </div>
         @endif
-        <form id="jobForm" action="{{ route('openings.update') }}" method="post" autocomplete="off">
+        <form id="jobForm" action="{{ route('openings.update', ['slug' => $opening->slug]) }}" method="post" autocomplete="off">
             @csrf
-            @method('PUT')
             <input type="hidden" name="opening_id" value="{{ $opening->id }}">
             <div class="card mt-5">
                 <div class="card-header">
@@ -174,8 +173,8 @@
                 </div>
                 <div class="card-footer text-right">
                     <a href="{{ route('openings.list-job') }}" class="btn btn-outline-danger"><i class="fas fa-fw fa-times"></i> Cancel</a>
-                    <button type="submit" class="btn btn-outline-primary"><i class="fas fa-fw fa-check"></i> Submit</button>
-                </div>
+                    <button type="submit" form="jobForm" class="btn btn-outline-primary"><i class="fas fa-fw fa-check"></i> Submit</button>
+                </div>                
             </div>
         </form>
     </div>

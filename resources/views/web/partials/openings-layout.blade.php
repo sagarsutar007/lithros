@@ -28,6 +28,31 @@
         </div>
         @endforeach
      </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+            <nav class="pagination-area">
+            <ul class="pagination justify-content-center">
+                @if ($openings->onFirstPage())
+                        <li class="disabled current"></li>
+                    @else
+                        <li><a href="{{ $openings->previousPageUrl() }}" rel="prev"><i class="fas fa-arrow-left"></i></a></li>
+                    @endif
+
+                        @foreach ($openings->getUrlRange(1, $openings->lastPage()) as $page => $url)
+                            <li class="{{ $page == $openings->currentPage() ? 'active' : '' }}">
+                                <a href="{{ $url }}">{{ $page }}</a>
+                            </li>
+                        @endforeach
+
+                    @if ($openings->hasMorePages())
+                        <li><a href="{{ $openings->nextPageUrl() }}" rel="next"</a><i class="fas fa-arrow-right"></i></li>
+                    @else
+                        <li class="disabled"></li>
+                    @endif
+            </ul>
+            </nav>
+        </div>
+    </div>
   </div>
 
   <div class="row">
@@ -76,57 +101,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <!-- Gender -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="gender">Gender:</label>
-                                    <select class="form-control @error('gender') is-invalid @enderror" id="gender" name="gender" required>
-                                        <option value="">Select</option>
-                                        <option value="male" {{ old('gender') === 'male' ? 'selected' : '' }}>Male</option>
-                                        <option value="female" {{ old('gender') === 'female' ? 'selected' : '' }}>Female</option>
-                                        <option value="other" {{ old('gender') === 'other' ? 'selected' : '' }}>Other</option>
-                                    </select>
-                                    @error('gender')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <!-- Profile Image -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="profile_img">Profile Image:</label>
-                                    <input type="file" class="form-control @error('profile_img') is-invalid @enderror" id="profile_img" name="profile_img">
-                                    @error('profile_img')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
                             <!-- CV -->
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="cv">CV:</label>
                                     <input type="file" class="form-control @error('cv') is-invalid @enderror" id="cv" name="cv" required>
                                     @error('cv')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <!-- Permanent Address -->
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="permanent_address">Permanent Address:</label>
-                                    <textarea class="form-control @error('permanent_address') is-invalid @enderror" id="permanent_address" name="permanent_address" required placeholder="Enter your permanent address">{{ old('permanent_address') }}</textarea>
-                                    @error('permanent_address')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <!-- Present Address -->
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="present_address">Present Address:</label>
-                                    <textarea class="form-control @error('present_address') is-invalid @enderror" id="present_address" name="present_address" required placeholder="Enter your present address">{{ old('present_address') }}</textarea>
-                                    @error('present_address')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

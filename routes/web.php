@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\OpeningController;
+use App\Http\Controllers\SliderController;
 
 
 /*
@@ -34,12 +35,16 @@ Route::get('/product/{slug}', [WebController::class, 'showBySlug'])->name('produ
 Route::get('/careers', [WebController::class, 'openings'])->name('web.openings');
 Route::get('/contact-us', [WebController::class, 'contact'])->name('web.contact');
 Route::get('/admin', [WebController::class, 'admin'])->name('web.admin');
+Route::get('/products/{categorySlug}', [WebController::class, 'productsByCategory'])->name('web.products.by_category');
+Route::get('/products/{categorySlug}/{productSlug}', [WebController::class, 'showProductBySlug'])->name('web.products.show_by_slug');
+
+
 
 Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
 
 
@@ -50,7 +55,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // });
 
 Route::middleware(['auth'])->group(function () {
-    // Products Routes
+
+    // Sliders Routes
+    Route::prefix('/app/sliders')->group(function () {
+        Route::get('', [SliderController::class, 'index'])->name('sliders');
+        Route::get('/create', [SliderController::class, 'create'])->name('sliders.create');
+        Route::post('/store', [SliderController::class, 'store'])->name('sliders.store');
+        Route::get('/{slider}/edit', [SliderController::class, 'edit'])->name('sliders.edit');
+        Route::post('/{slider}/update', [SliderController::class, 'update'])->name('sliders.update');
+        Route::delete('/{slider}', [SliderController::class, 'destroy'])->name('sliders.destroy');
+        Route::delete('/images/{image}', [SliderController::class, 'deleteImage'])->name('image.delete');
+        Route::get('/category/{categorySlug}', [ProductController::class, 'showProductsByCategory'])->name('products.by_category');
+
+
+    });
+
+
+    // Category Routes
     Route::prefix('/app/categories')->group(function () {
         Route::get('', [CategoryController::class, 'index'])->name('categories');
         Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -75,19 +96,21 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-
+    // Job Openings Routes
     Route::prefix('/app/openings')->group(function () {
         Route::get('/', [OpeningController::class, 'index'])->name('openings');
         Route::get('/create', [OpeningController::class, 'create'])->name('openings.create');
         Route::post('/store', [OpeningController::class, 'store'])->name('openings.store');
+        Route::get('/openings/{slug}/edit', [OpeningController::class, 'edit'])->name('openings.edit');
         Route::get('/{opening}/edit', [OpeningController::class, 'edit'])->name('openings.edit');
-        Route::post('/{opening}/update', [OpeningController::class, 'update'])->name('openings.update');
+        Route::post('/openings/{slug}/update', [OpeningController::class, 'update'])->name('openings.update');
         Route::delete('/{opening}', [OpeningController::class, 'destroy'])->name('openings.destroy');
         Route::post('/search', [OpeningController::class, 'search'])->name('openings.search');
         Route::get('/list-job', [OpeningController::class, 'listJob'])->name('openings.list-job');
 
     });
 
+    // Applciants Routes
     Route::prefix('/app/applicants')->group(function () {
         Route::get('/', [ApplicantController::class, 'index'])->name('applicants');
         Route::get('/create', [ApplicantController::class, 'create'])->name('applicants.create');
@@ -99,20 +122,19 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/search', [ApplicantController::class, 'search'])->name('applicants.search');
     });
 
+        
+    // Feedbacks Routes
     Route::prefix('/app/feedbacks')->group(function () {
         Route::get('', [FeedbackController::class, 'index'])->name('feedbacks');
         Route::get('/create', [FeedbackController::class, 'create'])->name('feedbacks.create');
         Route::post('/store', [FeedbackController::class, 'store'])->name('feedbacks.store');
         Route::post('/save', [FeedbackController::class, 'save'])->name('feedbacks.save');
-        Route::get('/{feedbacks}/edit', [FeedbackController::class, 'edit'])->name('feedbacks.edit');
-        Route::post('/{feedbacks}/update', [FeedbackController::class, 'update'])->name('feedbacks.update');
-        Route::delete('/{feedbacks}', [FeedbackController::class, 'destroy'])->name('feedbacks.destroy');
+        Route::get('/{feedback}/edit', [FeedbackController::class, 'edit'])->name('feedbacks.edit');
+        Route::post('/{feedback}/update', [FeedbackController::class, 'update'])->name('feedbacks.update');
+        Route::delete('/{feedback}', [FeedbackController::class, 'destroy'])->name('feedbacks.destroy');
         Route::post('/search', [FeedbackController::class, 'search'])->name('feedbacks.search');
     });
 });
 
-Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks.index');
-Route::get('/feedbacks/create', [FeedbackController::class, 'create'])->name('feedbacks.create');
-Route::post('/feedbacks', [FeedbackController::class, 'store'])->name('feedbacks.store');
 
 

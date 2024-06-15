@@ -9,6 +9,8 @@
   <title>@yield('title')</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500,600,700%7cRoboto:400,500,700&amp;display=swap">
   <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.15.3/css/all.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
   <link rel="stylesheet" href="{{ asset('assets/css/libraries.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
@@ -80,8 +82,16 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav__item">
+              <li class="nav__item has-dropdown">
                 <a href="{{ route('web.products') }}" class="nav__item-link">Products</a>
+                <button class="dropdown-toggle" data-toggle="dropdown"></button>
+                <ul class="dropdown-menu">
+                    @foreach ($categories as $category)
+                      <li class="nav__item">
+                          <a href="{{ route('web.products.by_category', ['categorySlug' => $category->slug]) }}" class="nav__item-link">{{ $category->name }}</a>
+                      </li>
+                    @endforeach
+                </ul>
               </li>
               <li class="nav__item has-dropdown">
                 <a href="{{ route('web.openings') }}" class="nav__item-link">Openings</a>
@@ -213,5 +223,8 @@
   <script src="{{ asset('assets/js/plugins.js') }}"></script>
   <script src="{{ asset('assets/js/main.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+  <!-- Initialize Slick Carousel -->
 </body>
 </html>

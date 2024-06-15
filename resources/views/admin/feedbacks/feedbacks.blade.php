@@ -21,9 +21,11 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Company</th>
+                                <th>Designation</th>
                                 <th>Image</th>
-                                <th>Comment</th>
+                                <th>Description</th>
                                 <th>Rating</th>
+                                <th>Approved</th>
                                 <th>Created At</th>
                                 <th>Actions</th> <!-- New column for edit and delete buttons -->
                             </tr>
@@ -34,21 +36,23 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $feedback->name }}</td>
                                 <td>{{ $feedback->company }}</td>
+                                <td>{{ $feedback->designation }}</td>
                                 <td>
-                                    @if($feedback->image)
-                                    <img src="{{ asset('storage/' . $feedback->image) }}" alt="Feedback Image" style="max-width: 100px;">
+                                    @if($feedback->profile_img)
+                                    <img src="{{ asset('assets/uploads/' . $feedback->profile_img) }}" alt="Feedback Image" style="max-width: 100px;">
                                     @else
                                     No Image
                                     @endif
                                 </td>
-                                <td>{{ $feedback->comment }}</td>
+                                <td>{{ $feedback->description }}</td>
                                 <td>{{ $feedback->rating }}</td>
+                                <td>{{ $feedback->approved ? 'Yes' : 'No'  }}</td>
                                 <td>{{ $feedback->created_at->format('Y-m-d') }}</td>
                                 <td>
-                                    <a href="{{ route('feedbacks.edit', ['feedback' => $feedback->id]) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('feedbacks.edit', ['feedback' => $feedback]) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i> <!-- Edit Icon -->
                                     </a>
-                                    <form action="{{ route('feedbacks.destroy', ['feedback' => $feedback->id]) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('feedbacks.destroy', ['feedback' => $feedback]) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this feedback?')">

@@ -25,4 +25,6 @@ class Applicant extends Model
         'present_address',
         'cv',
     ];
+
+ 
 }

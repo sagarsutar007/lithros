@@ -22,6 +22,7 @@
                                 <th>Name</th>
                                 <th>About</th>
                                 <th>Created By</th>
+                                <th>Updated By</th>
                                 <th>Created On</th>
                                 <th>Actions</th>
                             </tr>
@@ -32,7 +33,8 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->about }}</td>
-                                <td>{{ optional($category->users)->name }}</td>
+                                <td>{{ optional($category->createdBy)->name }}</td>
+                                <td>{{ optional($category->updatedby)->name }}</td>
                                 <td>{{ $category->created_at->format('d-m-Y') }}</td>
                                 <td>
                                     <a href="{{ route('categories.edit', ['category' => $category->category_id]) }}" class="btn btn-sm btn-primary">

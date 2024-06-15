@@ -146,7 +146,7 @@ class ProductController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $filename =  uniqid() . '-' . time() . '.' . $image->getClientOriginalExtension();
-                $imagePath = public_path('assets/images/products/');
+                $imagePath = public_path('assets/images/products/');;
                 $image->move($imagePath, $filename);
                 ProductImage::create([
                     'filename' => $filename,
@@ -182,5 +182,17 @@ class ProductController extends Controller
         
 
         return response()->json(['success'=>true, 'message'=>'Image deleted successfully'], 200);
+    }
+
+    public function productsByCategory($categorySlug)
+    {
+        // Find the category based on its slug
+        $category = Category::where('slug', $categorySlug)->firstOrFail();
+
+        // Retrieve the products associated with the category
+        $products = $category->products()->get();
+
+        // Pass the category and products data to the view
+        return view('web.products', compact('category', 'products'));
     }
 }

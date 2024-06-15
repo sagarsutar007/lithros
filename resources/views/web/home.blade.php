@@ -9,4 +9,5 @@
     @include('web.partials.about-layout')
     @include('web.partials.services-layout')
     @include('web.partials.features-layout-two')
+    @include('web.partials.testimonials-layout')
 @endsection

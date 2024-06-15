@@ -35,14 +35,6 @@ class ApplicantController extends Controller
         $applicant->permanent_address = $validatedData['permanent_address'];
         $applicant->present_address = $validatedData['present_address'];
 
-        // Handle profile image upload
-        if ($request->hasFile('profile_img')) {
-            $profileImage = $request->file('profile_img');
-            $profileImageName = uniqid() . '-' . time() . '.' . $profileImage->getClientOriginalExtension();
-            $profileImage->move(public_path('assets/images/profile/'), $profileImageName);
-            $applicant->profile_img = 'assets/images/profile/' . $profileImageName;
-        }
-
         // Handle CV upload
         if ($request->hasFile('cv')) {
             $resume = $request->file('cv');

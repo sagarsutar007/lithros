@@ -1,7 +1,7 @@
 <!-- ======================
     Features Layout 2
     ========================= -->
-    <section class="features-layout2 pt-120">
+    <section class="features-layout2 pt-120 pb-0">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-5">

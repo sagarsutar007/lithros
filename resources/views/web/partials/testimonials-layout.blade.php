@@ -1,122 +1,40 @@
-<section class="testimonials-layout1 pb-0">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-3">
-          <div class="heading text-center mb-40">
-            <h2 class="heading__subtitle color-primary">Customers Doing it Their Way</h2>
-            <h3 class="heading__title">Our Customers Share Their Experiences &amp; Insights</h3>
-          </div><!-- /.heading -->
-        </div><!-- /.col-lg-6 -->
-      </div><!-- /.row -->
-      <div class="row">
-        <div class="col-12">
-          <img src="{{ asset('assets/images/backgrounds/map2.png" alt') }}="map">
-          <!-- Testimonial #1 -->
-          <div class="testimonial-box">
-            <div class="testimonial__thumb">
-              <img src="{{ asset('assets/images/testimonials/thumbs/1.png') }}" alt="author thumb">
-              <span class="pulsing-animation pulsing-animation-1"></span>
-              <span class="pulsing-animation pulsing-animation-2"></span>
-              <span class="pulsing-animation pulsing-animation-3"></span>
-            </div><!-- /.testimonial-thumb -->
-            <div class="testimonial__panel">
-              <div class="testimonial__desc">
-                As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
-                ready to help.
-              </div>
-            </div><!-- /.testimonial-panel -->
-          </div><!-- /. testimonial-box -->
-          <!-- Testimonial #2 -->
-          <div class="testimonial-box">
-            <div class="testimonial__thumb">
-              <img src="{{ asset('assets/images/testimonials/thumbs/2.png') }}" alt="author thumb">
-              <span class="pulsing-animation pulsing-animation-1"></span>
-              <span class="pulsing-animation pulsing-animation-2"></span>
-              <span class="pulsing-animation pulsing-animation-3"></span>
-            </div><!-- /.testimonial-thumb -->
-            <div class="testimonial__panel">
-              <div class="testimonial__desc">
-                As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
-                ready to help.
-              </div>
-            </div><!-- /.testimonial-panel -->
-          </div><!-- /. testimonial-box -->
-          <!-- Testimonial #3 -->
-          <div class="testimonial-box">
-            <div class="testimonial__thumb">
-              <img src="{{ asset('assets/images/testimonials/thumbs/3.png') }}" alt="author thumb">
-              <span class="pulsing-animation pulsing-animation-1"></span>
-              <span class="pulsing-animation pulsing-animation-2"></span>
-              <span class="pulsing-animation pulsing-animation-3"></span>
-            </div><!-- /.testimonial-thumb -->
-            <div class="testimonial__panel">
-              <div class="testimonial__desc">
-                As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
-                ready to help.
-              </div>
-            </div><!-- /.testimonial-panel -->
-          </div><!-- /. testimonial-box -->
-          <!-- Testimonial #4 -->
-          <div class="testimonial-box testimonial-hover-left">
-            <div class="testimonial__thumb">
-              <img src="{{ asset('assets/images/testimonials/thumbs/4.png') }}" alt="author thumb">
-              <span class="pulsing-animation pulsing-animation-1"></span>
-              <span class="pulsing-animation pulsing-animation-2"></span>
-              <span class="pulsing-animation pulsing-animation-3"></span>
-            </div><!-- /.testimonial-thumb -->
-            <div class="testimonial__panel">
-              <div class="testimonial__desc">
-                As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
-                ready to help.
-              </div>
-            </div><!-- /.testimonial-panel -->
-          </div><!-- /. testimonial-box -->
-          <!-- Testimonial #5 -->
-          <div class="testimonial-box testimonial-hover-left">
-            <div class="testimonial__thumb">
-              <img src="{{ asset('assets/images/testimonials/thumbs/5.png') }}" alt="author thumb">
-              <span class="pulsing-animation pulsing-animation-1"></span>
-              <span class="pulsing-animation pulsing-animation-2"></span>
-              <span class="pulsing-animation pulsing-animation-3"></span>
-            </div><!-- /.testimonial-thumb -->
-            <div class="testimonial__panel">
-              <div class="testimonial__desc">
-                As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
-                ready to help.
-              </div>
-            </div><!-- /.testimonial-panel -->
-          </div><!-- /. testimonial-box -->
-          <!-- Testimonial #6 -->
-          <div class="testimonial-box">
-            <div class="testimonial__thumb">
-              <img src="{{ asset('assets/images/testimonials/thumbs/1.png') }}" alt="author thumb">
-              <span class="pulsing-animation pulsing-animation-1"></span>
-              <span class="pulsing-animation pulsing-animation-2"></span>
-              <span class="pulsing-animation pulsing-animation-3"></span>
-            </div><!-- /.testimonial-thumb -->
-            <div class="testimonial__panel">
-              <div class="testimonial__desc">
-                As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
-                ready to help.
-              </div>
-            </div><!-- /.testimonial-panel -->
-          </div><!-- /. testimonial-box -->
-          <!-- Testimonial #7 -->
-          <div class="testimonial-box">
-            <div class="testimonial__thumb">
-              <img src="{{ asset('assets/images/testimonials/thumbs/4.png') }}" alt="author thumb">
-              <span class="pulsing-animation pulsing-animation-1"></span>
-              <span class="pulsing-animation pulsing-animation-2"></span>
-              <span class="pulsing-animation pulsing-animation-3"></span>
-            </div><!-- /.testimonial-thumb -->
-            <div class="testimonial__panel">
-              <div class="testimonial__desc">
-                As one of the world's largest ITService Providers with over 120 engineers and IT support staff are
-                ready to help.
-              </div>
-            </div><!-- /.testimonial-panel -->
-          </div><!-- /. testimonial-box -->
-        </div><!-- /.col-12 -->
-      </div><!-- /.row -->
-    </div><!-- /.container -->
-  </section>
+<section class="pt-0">
+      <div class="container">
+        <div class="row testimonials-layout2">
+          <div class="col-12">
+            <div class="testimonials-wrapper">
+              <div class="slick-carousel gutter-20"
+                data-slick='{"slidesToShow": 2, "arrows": false, "dots": true, "infinite": true, "responsive": [ {"breakpoint": 992, "settings": {"slidesToShow": 2}}, {"breakpoint": 480, "settings": {"slidesToShow": 1}}]}'>
+                <!-- Testimonial #1 -->
+                @foreach($feedbacks as $feedback)
+                  <div class="testimonial-item d-flex">
+                      <div class="testimonial__thumb">
+                          <img src="{{ asset('assets/uploads/' . $feedback->profile_img) }}" alt="thumb">
+                      </div><!-- /.testimonial__thumb -->
+                      <div>
+                          <div class="testimonial__rating d-flex align-items-center">
+                              <div class="mr-20">
+                                  @for($i = 1; $i <= 5; $i++)
+                                      @if($i <= $feedback->rating)
+                                          <i class="fas fa-star"></i>
+                                      @else
+                                          <i class="far fa-star"></i>
+                                      @endif
+                                  @endfor
+                              </div>
+                          </div><!-- /.testimonial__rating -->
+                          <h4 class="testimonial__desc">{{ $feedback->description }}</h4>
+                          <div class="testimonial__meta">
+                              <h4 class="testimonial__meta-title">{{ $feedback->name }}</h4>
+                              <p class="testimonial__meta-desc">{{ $feedback->designation }}</p>
+                          </div><!-- /.testimonial-meta -->
+                      </div>
+                  </div>
+                @endforeach
+
+              </div><!-- /.carousel -->
+            </div>
+          </div><!-- /.col-12 -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /.Text Content -->

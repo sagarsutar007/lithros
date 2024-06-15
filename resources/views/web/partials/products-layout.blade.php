@@ -21,9 +21,9 @@
                           <img src="{{ asset('assets/images/products/'.$product->images->first()->filename) }}" loading="lazy">
                       @endif
                         <div class="product__action">
-                            <a href="product/{{ $product->slug }}" class="btn btn__secondary">
-                                <i class="icon-search"></i> <span>Enquire Now</span>
-                            </a>
+                          <a href="{{ route('web.products.show_by_slug', ['categorySlug' => $product->category->slug, 'productSlug' => $product->slug]) }}" class="btn btn__secondary">
+                            <i class="icon-search"></i> <span>Enquire Now</span>
+                        </a>                     
                         </div>
                     </div>
                     <div class="product__info">

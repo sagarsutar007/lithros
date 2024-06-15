@@ -29,8 +29,6 @@
                                 <th>Location</th>
                                 <th>Working Days</th>
                                 <th>Working Hours</th>
-                                <th>Created By</th>
-                                <th>Updated By</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -48,19 +46,18 @@
                                 <td>{{ $opening->location }}</td>
                                 <td>{{ $opening->working_days }}</td>
                                 <td>{{ $opening->working_hours }}</td>
-                                <td>{{ $opening->created_by }}</td>
-                                <td>{{ $opening->updated_by }}</td>
                                 <td>
-                                    <a href="{{ route('openings.edit', ['opening' => $opening]) }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('openings.edit', $opening->slug) }}" class="btn btn-sm btn-primary">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('openings.destroy', ['opening' => $opening]) }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('openings.destroy',  $opening->slug) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this Opening?')">
                                             <i class="fas fa-trash"></i> <!-- Delete Icon -->
                                         </button>
                                     </form>
+                                    
                                 </td>
                             </tr>
                             @endforeach

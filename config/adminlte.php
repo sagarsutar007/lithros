@@ -298,14 +298,31 @@ return [
 
         [
             'text' => 'Dashboard',
-            'url'  => 'app/dashboard',
+            'url'  => '/dashboard',
             'icon' => 'nav-icon fas fa-home',
             'class' => '',
         ],
+
+        [
+            'text' => 'Sliders',
+            'url'  => '#',
+            'icon' => 'nav-icon fas fa-image',
+            'submenu' => [
+                [
+                    'text' => 'Add Sliders',
+                    'url' => 'app/sliders/create',
+                ],
+                [
+                    'text' => 'Sliders',
+                    'url' => 'app/sliders',
+                ],
+            ],
+        ],
+
         [
             'text' => 'Categories',
             'url'  => '#',
-            'icon' => 'fas fa-fw fa-th ',
+            'icon' => 'nav-icon fas fa-fw fa-th ',
             'submenu' => [
                 [
                     'text' => 'Create',
@@ -322,7 +339,7 @@ return [
         [
             'text' => 'Products',
             'url'  => '#',
-            'icon' => 'fas fa-barcode',
+            'icon' => 'nav-icon fas fa-layer-group',
             'submenu' => [
                 [
                     'text' => 'Add Product',
@@ -338,13 +355,23 @@ return [
         [
             'text' => 'Feedbacks',
             'url'  => 'app/feedbacks/create',
-            'icon' => 'fas fa-fw fa-clipboard-list',
+            'icon' => 'nav-icon fas fa-fw fa-clipboard-list',
+            'submenu' => [
+                [
+                    'text' => 'Add Feedback',
+                    'url' => 'app/feedbacks/create',
+                ],
+                [
+                    'text' => 'View Feedbacks',
+                    'url' => 'app/feedbacks',
+                ],
+            ],
         ],
 
         [
             'text' => 'Careers',
             'url'  => '#',
-            'icon' => 'fas fa-users',
+            'icon' => 'nav-icon fas fa-users',
             'submenu' => [
                 [
                     'text' => 'Add Openings',
@@ -360,7 +387,7 @@ return [
         [
             'text' => 'Applicants',
             'url'  => 'app/applicants',
-            'icon' => 'fas fa-user',
+            'icon' => 'nav-icon fas fa-user',
         ],
 
 

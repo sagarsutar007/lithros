@@ -158,6 +158,7 @@ $(function () {
         dots: true,
         asNavFor: '.slider-nav'
     });
+    
     $('.slider-nav').slick({
         slidesToShow: 2,
         slidesToScroll: 1,

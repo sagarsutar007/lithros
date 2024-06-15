@@ -17,11 +17,7 @@
                                 <th>Applicant ID</th>
                                 <th>Name</th>
                                 <th>Phone</th>
-                                <th>Gender</th>
                                 <th>Email</th>
-                                <th>Profile Image</th>
-                                <th>Permanent Address</th>
-                                <th>Present Address</th>
                                 <th>CV</th>
                             </tr>
                         </thead>
@@ -31,11 +27,7 @@
                                 <td>{{ $applicant->applicant_id }}</td>
                                 <td>{{ $applicant->name }}</td>
                                 <td>{{ $applicant->phone }}</td>
-                                <td>{{ $applicant->gender }}</td>
                                 <td>{{ $applicant->email }}</td>
-                                <td><img src="{{ asset('assets/images/profile/' . $applicant->profile_img) }}" alt="Profile Image" style="max-width: 100px;"></td>
-                                <td>{{ $applicant->permanent_address }}</td>
-                                <td>{{ $applicant->present_address }}</td>
                                 <td><a href="{{ asset('assets/resumes/' . $applicant->cv) }}" download>{{ $applicant->cv }}</a></td>
                             </tr>
                             @endforeach

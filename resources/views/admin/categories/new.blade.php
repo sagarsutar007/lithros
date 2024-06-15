@@ -52,7 +52,6 @@
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    <button type="button" class="btn btn-outline-secondary add-category-item"><i class="fas fa-fw fa-plus"></i> New</button>
                     <a href="{{ route('categories') }}" class="btn btn-outline-danger"><i class="fas fa-fw fa-times"></i> Cancel</a>
                     <button type="submit" class="btn btn-outline-primary"><i class="fas fa-fw fa-check"></i> Submit</button>
                 </div>

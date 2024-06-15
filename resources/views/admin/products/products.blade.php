@@ -33,7 +33,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ ucfirst($product->name) }}</td>
                                 <td>{{ $product->mrp }}</td>
-                                <td>{{ $product->category->name }}</td>
+                                <td>{{ ($product->category)->name }}</td>
                                 <td>{{ $product->stock ? 'Available' : 'Not Available' }}</td>
                                 <td>{{ $product->status ? 'Published' : 'Not Published' }}</td>
                                 <td>
